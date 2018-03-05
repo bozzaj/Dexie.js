@@ -7931,6 +7931,20 @@
             }
         });
     });
+    spawnedTest("delByKeyPath not working correctly for arrays", function () {
+        var obj, obj2, jsonResult, jsonResult2;
+        return __generator$9(this, function (_a) {
+            obj = { deepObject: { someArray: ["a", "b"] } };
+            obj2 = { deepObject: { someArray: ["a", "b", "c"] } };
+            jsonResult = JSON.stringify(obj);
+            console.log("jsonResult = ", jsonResult);
+            Dexie.delByKeyPath(obj2, "deepObject.someArray.2");
+            jsonResult2 = JSON.stringify(obj2);
+            console.log("jsonResult2 = ", jsonResult2);
+            QUnit.equal(jsonResult, jsonResult2, "Should be equal " + jsonResult + " " + jsonResult2);
+            return [2 /*return*/];
+        });
+    });
 
     QUnit.module("promise");
     //Dexie.debug = "dexie";

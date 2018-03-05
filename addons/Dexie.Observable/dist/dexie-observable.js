@@ -12,7 +12,7 @@
  *
  * ==========================================================================
  *
- * Version 1.0.0-beta.4, Thu Mar 01 2018
+ * Version 1.0.0-beta.4, Mon Mar 05 2018
  *
  * http://dexie.org
  *
@@ -534,7 +534,7 @@ function deleteOldChanges(db) {
  *
  * ==========================================================================
  *
- * Version 1.0.0-beta.4, Thu Mar 01 2018
+ * Version 1.0.0-beta.4, Mon Mar 05 2018
  *
  * http://dexie.org
  *

@@ -4,7 +4,7 @@
  *
  * By David Fahlander, david.fahlander@gmail.com
  *
- * Version 2.0.2, Thu Mar 01 2018
+ * Version 2.0.3, Mon Mar 05 2018
  *
  * http://dexie.org
  *
@@ -151,8 +151,12 @@ function setByKeyPath(obj, keyPath, value) {
             var currentKeyPath = keyPath.substr(0, period);
             var remainingKeyPath = keyPath.substr(period + 1);
             if (remainingKeyPath === "")
-                if (value === undefined)
-                    delete obj[currentKeyPath];
+                if (value === undefined) {
+                    if (isArray(obj) && !isNaN(parseInt(currentKeyPath)))
+                        obj.splice(currentKeyPath, 1);
+                    else
+                        delete obj[currentKeyPath];
+                }
                 else
                     obj[currentKeyPath] = value;
             else {
@@ -163,8 +167,12 @@ function setByKeyPath(obj, keyPath, value) {
             }
         }
         else {
-            if (value === undefined)
-                delete obj[keyPath];
+            if (value === undefined) {
+                if (isArray(obj) && !isNaN(parseInt(keyPath)))
+                    obj.splice(keyPath, 1);
+                else
+                    delete obj[keyPath];
+            }
             else
                 obj[keyPath] = value;
         }
@@ -1469,14 +1477,14 @@ function Events(ctx) {
  *
  * Copyright (c) 2014-2017 David Fahlander
  *
- * Version 2.0.2, Thu Mar 01 2018
+ * Version 2.0.3, Mon Mar 05 2018
  *
  * http://dexie.org
  *
  * Apache License Version 2.0, January 2004, http://www.apache.org/licenses/LICENSE-2.0
  *
  */
-var DEXIE_VERSION = '2.0.2';
+var DEXIE_VERSION = '2.0.3';
 var maxString = String.fromCharCode(65535);
 var maxKey = (function () { try {
     IDBKeyRange.only([[]]);
